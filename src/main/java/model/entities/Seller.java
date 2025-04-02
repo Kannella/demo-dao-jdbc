@@ -14,7 +14,12 @@ public class Seller implements Serializable {
     // O vendedor tem UM departamento
     private Department department;
 
-    //Construtor
+    //Construtores
+
+    public Seller() {
+
+    }
+
     public Seller(int id, String name, String email, Date birthDate, Double baseSalary, Department department) {
         this.id = id;
         this.name = name;
