@@ -63,18 +63,10 @@ public class SellerDaoJDBC implements SellerDao {
 
             if (rs.next()) {
                 //Definindo os atributos do objeto Department
-                Department dep = new Department();
-                dep.setId(rs.getInt("DepartmentId"));
-                dep.setName(rs.getString("DepName"));
+                Department dep = instanciateDepartment(rs);
 
                 //Definindo os atributos do objeto Seller
-                Seller obj = new Seller();
-                obj.setId(rs.getInt("Id"));
-                obj.setName(rs.getString("Name"));
-                obj.setEmail(rs.getString("Email"));
-                obj.setBaseSalary(rs.getDouble("BaseSalary"));
-                obj.setBirthDate(rs.getDate("BirthDate"));
-                obj.setDepartment(dep);
+                Seller obj = instanciateSeller(rs, dep);
 
                 return obj;
             }
@@ -92,6 +84,27 @@ public class SellerDaoJDBC implements SellerDao {
         }
 
 
+    }
+
+    //Como eu ja tratei a excessao no getById acima eu apenas vou propagar (em vez de tratar) a excessao que der (se der) no metodo getById com o throws SQLExceprion
+    private Seller instanciateSeller(ResultSet rs, Department dep) throws SQLException {
+        Seller obj = new Seller();
+        obj.setId(rs.getInt("Id"));
+        obj.setName(rs.getString("Name"));
+        obj.setEmail(rs.getString("Email"));
+        obj.setBaseSalary(rs.getDouble("BaseSalary"));
+        obj.setBirthDate(rs.getDate("BirthDate"));
+        obj.setDepartment(dep);
+
+        return obj;
+    }
+
+    //Como eu ja tratei a excessao no getById acima eu apenas vou propagar (em vez de tratar) a excessao que der (se der) no metodo getById com o throws SQLExceprion
+    private Department instanciateDepartment(ResultSet rs) throws SQLException{
+        Department dep = new Department();
+        dep.setId(rs.getInt("DepartmentId"));
+        dep.setName(rs.getString("DepName"));
+        return dep;
     }
 
     @Override

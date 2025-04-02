@@ -12,6 +12,7 @@ public class Program {
         //O metodo createSellerDao() da DaoFactory retorna um objeto do tipo SellerDao.
         SellerDao sellerDao = DaoFactory.createSellerDao(); //Macete para nao expor a implementacao, somente a interface. Uma forma de fazer a injecao de dependencia sem mostrar a implementacao
 
+        System.out.println("=== TEST 1: seller findById =====");
         Seller seller = sellerDao.findById(3);
 
         System.out.println(seller);
