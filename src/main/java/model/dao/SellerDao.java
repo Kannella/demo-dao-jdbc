@@ -11,4 +11,5 @@ public interface SellerDao {
     void deleteById(int id);
     Seller findById(int id);
     List<Seller> findAll(); // Vai retornar uma lista de Sellers
+    List<Seller> findByDepartment(Department department);
 }
